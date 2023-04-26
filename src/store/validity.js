@@ -6,8 +6,11 @@ const validitySlice = createSlice({
     name: 'val',
     initialState: initialState,
     reducers: {
-        checkIsButtonClicked(state) {
+        buttonIsClicked(state) {
             state.isButtonClicked = true
+        },
+        buttonIsNotClicked(state) {
+            state.isButtonClicked = false
         }
     }
 })

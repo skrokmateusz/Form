@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import useInput from '../../hooks/use-input'
 
@@ -11,8 +10,7 @@ import classes from './MainProductComplain.module.css'
 const MainProductComplain = props => {
 	const isButtonClicked = useSelector(state => state.val.isButtonClicked)
 
-
-	console.log(isButtonClicked);
+	console.log(isButtonClicked)
 
 	const {
 		value: enteredFlavour,
@@ -46,23 +44,10 @@ const MainProductComplain = props => {
 		inputBlurHandler: purchasePlaceBlurHandler,
 	} = useInput(value => value !== '')
 
-
 	let isCorrectContent = false
 	isCorrectContent =
 		enteredFlavourIsValid && enteredExpirationDateIsValid && enteredMessageIsValid && enteredPurchasePlaceIsValid
 	props.onCorrectContent(isCorrectContent)
-	// console.log(isCorrectContent);
-
-	// {hasFlavourError ? classes.invalid : ''}
-
-	// {`${hasFlavourError ? classes.invalid : ''} ${isButtonClicked && !enteredFlavour ? classes.invalid : ''}`}
-
-	let errorParagraph
-	if (hasFlavourError || (isButtonClicked && !enteredFlavour)) {
-		errorParagraph = <p>* Wypełnienie tego pola jest wymagane</p>
-	} else {
-		errorParagraph = <p></p>
-	}
 
 	return (
 		<main>
@@ -75,7 +60,9 @@ const MainProductComplain = props => {
 				</div>
 				<Input
 					label="Nazwa / smak *"
-					className={`${hasFlavourError ? classes.invalid : ''} ${isButtonClicked && !enteredFlavourIsValid ? classes.invalid : ''}`}
+					className={`${hasFlavourError ? classes.invalid : ''} ${
+						isButtonClicked && !enteredFlavourIsValid ? classes.invalid : ''
+					}`}
 					input={{
 						type: 'text',
 						id: 'flavour',
@@ -85,13 +72,13 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{errorParagraph}
-					{/* {hasFlavourError && <p>* Wypełnienie tego pola jest wymagane</p>}
-					{isButtonClicked && !enteredFlavour && <p>* Wypełnienie tego pola jest wymagane</p>} */}
+					{hasFlavourError || (isButtonClicked && !enteredFlavour) ? <p>* Wypełnienie tego pola jest wymagane</p> : ''}
 				</div>
 				<Input
-					className={hasExpirationDateError ? classes.invalid : ''}
 					label="Data ważności i numer partii *"
+					className={`${hasExpirationDateError ? classes.invalid : ''} ${
+						isButtonClicked && !enteredExpirationDateIsValid ? classes.invalid : ''
+					}`}
 					input={{
 						type: 'text',
 						id: 'expiration-date',
@@ -101,10 +88,16 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasExpirationDateError && <p>* Wypełnienie tego pola jest wymagane</p>}
+					{hasExpirationDateError || (isButtonClicked && !enteredExpirationDate) ? (
+						<p>* Wypełnienie tego pola jest wymagane</p>
+					) : (
+						''
+					)}
 				</div>
 				<Input
-					className={hasMessageError ? `${classes.invalid} ${classes.message}` : classes.message}
+					className={`${hasMessageError ? `${classes.invalid} ${classes.message}` : classes.message} ${
+						isButtonClicked && !enteredMessageIsValid ? `${classes.invalid} ${classes.message}` : classes.message
+					}`}
 					label="Opis sytuacji *"
 					input={{
 						type: 'text',
@@ -115,11 +108,12 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasMessageError && <p>* Wypełnienie tego pola jest wymagane</p>}
+					{hasMessageError || (isButtonClicked && !enteredMessage) ? <p>* Wypełnienie tego pola jest wymagane</p> : ''}
 				</div>
-
 				<Input
-					className={hasPurchasePlaceError ? classes.invalid : ''}
+					className={`${hasPurchasePlaceError ? classes.invalid : ''} ${
+						isButtonClicked && !enteredPurchasePlaceIsValid ? classes.invalid : ''
+					}`}
 					label="Gdzie i kiedy zakupiono produkt*"
 					input={{
 						type: 'text',
@@ -130,7 +124,11 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasPurchasePlaceError && <p>* Wypełnienie tego pola jest wymagane</p>}
+					{hasPurchasePlaceError || (isButtonClicked && !enteredPurchasePlace) ? (
+						<p>* Wypełnienie tego pola jest wymagane</p>
+					) : (
+						''
+					)}
 				</div>
 				<OptionInput
 					label="Czy zostało zachowane opakowanie"

@@ -27,8 +27,9 @@ const CartProductComplain = props => {
 	const nextPageHandler = props => {
 		if (isContentCorrect) {
 			dispatch(navActions.navToSubmissionCart())
+			dispatch(valActions.buttonIsNotClicked())
 		} else {
-			dispatch(valActions.checkIsButtonClicked())
+			dispatch(valActions.buttonIsClicked())
 		}
 	}
 
