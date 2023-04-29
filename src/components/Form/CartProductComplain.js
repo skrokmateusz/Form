@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { navActions } from '../../store/navigation'
 import { valActions } from '../../store/validity'
+// import { dataActions } from '../../store/data'
 
 import Card from '../UI/Card'
 import Header from '../Layout/Header'
@@ -24,14 +25,18 @@ const CartProductComplain = props => {
 		dispatch(navActions.navToHomePage())
 	}
 
-	const nextPageHandler = props => {
+	const nextPageHandler = () => {
 		if (isContentCorrect) {
 			dispatch(navActions.navToSubmissionCart())
-			dispatch(valActions.buttonIsNotClicked())
+			dispatch(valActions.buttonNextStepIsNotClicked())
+			// dispatch(dataActions.addData())
 		} else {
-			dispatch(valActions.buttonIsClicked())
+			dispatch(valActions.buttonNextStepIsClicked())
 		}
 	}
+	
+	// const checkValue = useSelector(state => state.data.flavour)
+	// console.log(checkValue);
 
 	return (
 		<Fragment>

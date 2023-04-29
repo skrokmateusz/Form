@@ -10,7 +10,6 @@ import { navActions } from '../../store/navigation'
 
 import classes from './CartTypeAction.module.css'
 
-
 const CartTypeAction = props => {
 	const dispatch = useDispatch()
 	const [currentAction, setCurrentAction] = useState('')
@@ -20,7 +19,9 @@ const CartTypeAction = props => {
 	}
 
 	const nextStepBtn = () => {
-		if (currentAction === 'complain') {
+		if (!currentAction) {
+			return
+		} else if (currentAction === 'complain') {
 			dispatch(navActions.navToComplainCart())
 		} else if (currentAction === 'question') {
 			dispatch(navActions.navToQuestionCart())

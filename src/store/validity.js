@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { isButtonClicked: false }
+const initialState = { isNextStepButtonClicked: false, isSubmissionButtonClicked: false }
 
 const validitySlice = createSlice({
     name: 'val',
     initialState: initialState,
     reducers: {
-        buttonIsClicked(state) {
-            state.isButtonClicked = true
+        buttonNextStepIsClicked(state) {
+            state.isNextStepButtonClicked = true
         },
-        buttonIsNotClicked(state) {
-            state.isButtonClicked = false
+        buttonNextStepIsNotClicked(state) {
+            state.isNextStepButtonClicked = false
+        },
+        buttonSubmissionIsClicked(state) {
+            state.isSubmissionButtonClicked = true
+        },
+        buttonSubmissionIsNotClicked(state) {
+            state.isSubmissionButtonClicked = false
         }
     }
 })

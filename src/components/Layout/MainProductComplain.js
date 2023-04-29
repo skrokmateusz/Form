@@ -8,9 +8,7 @@ import DateInput from '../UI/DateInput'
 import classes from './MainProductComplain.module.css'
 
 const MainProductComplain = props => {
-	const isButtonClicked = useSelector(state => state.val.isButtonClicked)
-
-	console.log(isButtonClicked)
+	const isNextStepClicked = useSelector(state => state.val.isNextStepButtonClicked)
 
 	const {
 		value: enteredFlavour,
@@ -61,7 +59,7 @@ const MainProductComplain = props => {
 				<Input
 					label="Nazwa / smak *"
 					className={`${hasFlavourError ? classes.invalid : ''} ${
-						isButtonClicked && !enteredFlavourIsValid ? classes.invalid : ''
+						isNextStepClicked && !enteredFlavourIsValid ? classes.invalid : ''
 					}`}
 					input={{
 						type: 'text',
@@ -72,12 +70,16 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasFlavourError || (isButtonClicked && !enteredFlavour) ? <p>* Wypełnienie tego pola jest wymagane</p> : ''}
+					{hasFlavourError || (isNextStepClicked && !enteredFlavour) ? (
+						<p>* Wypełnienie tego pola jest wymagane</p>
+					) : (
+						''
+					)}
 				</div>
 				<Input
 					label="Data ważności i numer partii *"
 					className={`${hasExpirationDateError ? classes.invalid : ''} ${
-						isButtonClicked && !enteredExpirationDateIsValid ? classes.invalid : ''
+						isNextStepClicked && !enteredExpirationDateIsValid ? classes.invalid : ''
 					}`}
 					input={{
 						type: 'text',
@@ -88,7 +90,7 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasExpirationDateError || (isButtonClicked && !enteredExpirationDate) ? (
+					{hasExpirationDateError || (isNextStepClicked && !enteredExpirationDate) ? (
 						<p>* Wypełnienie tego pola jest wymagane</p>
 					) : (
 						''
@@ -96,7 +98,9 @@ const MainProductComplain = props => {
 				</div>
 				<Input
 					className={`${hasMessageError ? `${classes.invalid} ${classes.message}` : classes.message} ${
-						isButtonClicked && !enteredMessageIsValid ? `${classes.invalid} ${classes.message}` : classes.message
+						isNextStepClicked && !enteredMessageIsValid
+							? `${classes.invalid} ${classes.message}`
+							: classes.message
 					}`}
 					label="Opis sytuacji *"
 					input={{
@@ -108,11 +112,15 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasMessageError || (isButtonClicked && !enteredMessage) ? <p>* Wypełnienie tego pola jest wymagane</p> : ''}
+					{hasMessageError || (isNextStepClicked && !enteredMessage) ? (
+						<p>* Wypełnienie tego pola jest wymagane</p>
+					) : (
+						''
+					)}
 				</div>
 				<Input
 					className={`${hasPurchasePlaceError ? classes.invalid : ''} ${
-						isButtonClicked && !enteredPurchasePlaceIsValid ? classes.invalid : ''
+						isNextStepClicked && !enteredPurchasePlaceIsValid ? classes.invalid : ''
 					}`}
 					label="Gdzie i kiedy zakupiono produkt*"
 					input={{
@@ -124,7 +132,7 @@ const MainProductComplain = props => {
 					}}
 				/>
 				<div className={classes['invalid-input']}>
-					{hasPurchasePlaceError || (isButtonClicked && !enteredPurchasePlace) ? (
+					{hasPurchasePlaceError || (isNextStepClicked && !enteredPurchasePlace) ? (
 						<p>* Wypełnienie tego pola jest wymagane</p>
 					) : (
 						''

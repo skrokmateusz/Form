@@ -4,13 +4,13 @@ import { valActions } from '../../store/validity'
 
 import Card from '../UI/Card'
 import Header from '../Layout/Header'
-import MainSubmission from '../Layout/MainSubmission'
+import MainSubmissionComplain from '../Layout/MainSubmissionComplain'
 import Footer from '../Layout/Footer'
 import Button from '../UI/Button'
 
 import classes from './CartSubmission.module.css'
 
-const CartSubmission = props => {
+const CartSubmissionComplain = props => {
 	const dispatch = useDispatch()
 
 	const submitFormHandler = event => {
@@ -41,7 +41,7 @@ const CartSubmission = props => {
 					onClickOne={mainPageHandler}
 					onClickTwo={previousPageHandler}
 				/>
-				<MainSubmission />
+				<MainSubmissionComplain />
 			</Card>
 			<Footer className={classes.footer}>
 				<Button onClick={previousPageHandler} title="" className={classes['back-button']} />
@@ -51,4 +51,4 @@ const CartSubmission = props => {
 	)
 }
 
-export default CartSubmission
+export default CartSubmissionComplain
